@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Tarefa, TarefasService } from './tarefas.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'tarefa',
@@ -8,9 +9,18 @@ import { Tarefa, TarefasService } from './tarefas.service';
 })
 
 export class TarefaComponent {
+   
     tarefa: Tarefa;
+    id: number;
 
-    constructor(public ts: TarefasService){
-        this.tarefa = ts.getTarefa(2);
+    constructor(public ts: TarefasService,
+                public ar: ActivatedRoute){
+        this.id = parseInt(this.ar.snapshot.paramMap.get('id'));
+        ts.getTarefa(this.id).subscribe((dado: Tarefa) => {
+            this.tarefa = dado;
+        });
     }
+
+    
+
 }

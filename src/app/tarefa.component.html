@@ -1,7 +1,40 @@
-<h2>{{ tarefa.tarefa }}</h2>
-<dl>
-    <dt>Código</dt><dd>{{ tarefa.codigo }}</dd>
-    <dt>Data</dt><dd>{{ tarefa.data }}</dd>
-    <dt>Prioridade</dt><dd>{{ tarefa.prioridade }}</dd>
-    <dt>Projeto</dt><dd>{{ tarefa.codigoProjeto }}</dd>
-</dl>
+<h2>
+    {{tarefa?.tarefa}}
+    <span [hidden]="!!tarefa?.tarefa">Tarefa não encontrada</span>
+</h2>
+<form #f="ngForm" (ngSubmit)="atualizaTarefa()">
+    <p>
+        <label for="tarefa">Tarefa: </label>
+        <input #tf="ngModel" type="text" [(ngModel)]="tarefa.tarefa" id="tarefa" name="tarefa" required />
+        <span [hidden]="tf.untouched || tf.valid" Os style="color: red">
+            A tarefa é obrigatória.
+        </span>
+    </p>
+    <p>
+        <label for="prioridade">Prioridade: </label>
+        <select [(ngModel)]="tarefa.prioridade" id="prioridade" name="prioridade" required>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+    </p>
+    <p>
+        <label for="data">Data: </label>
+        <input #td="ngModel" type="date" [(ngModel)]="tarefa.data" id="data" name="data" required />
+        <span [hidden]="td.untouched || td.valid" style="color: red">
+            Data inválida.
+        </span>
+    </p>
+    <p>
+        <label for="projeto">Projeto: </label>
+        <select [(ngModel)]="tarefa.codigoProjeto" id="projeto" name="projeto" required>
+            <option *ngFor="let p of projetos" [value]="p.codigo" [selected]="p.codigo==tarefa.codigoProjeto">
+                {{p.projeto}}
+            </option>
+        </select>
+    </p>
+    <p>
+        <button input="submit" [disabled]="!f.valid">Atualizar</button>
+        <button (click)="excluiTarefa()">Excluir</button>
+    </p>
+</form>

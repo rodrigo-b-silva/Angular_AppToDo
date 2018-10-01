@@ -16,3 +16,17 @@ dl:after{
     display: block;
     clear: both;
 }
+input {
+    padding: 5px;
+    border: thin solid #999;
+  }
+  input.ng-touched.ng-valid {
+    border-left: thick solid #0c0;
+  }
+  input.ng-touched.ng-invalid {
+    border-left: thick solid #c00;
+  }
+  label {
+    float: left; width: 5em;
+    padding-top: 2px;
+  }

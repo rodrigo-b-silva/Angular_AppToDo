@@ -10,9 +10,12 @@ import { Tarefa, TarefasService} from './tarefas.service';
 
 export class TarefasComponent {
     
-    tarefas: Tarefa[];
+    tarefas: Tarefa[] = [];
+
     constructor(public ts: TarefasService){
-        this.tarefas = ts.getTarefas();
+        ts.getTarefas().subscribe((dados: Tarefa[]) => {
+            this.tarefas = dados;
+        });
     }
 
 }
