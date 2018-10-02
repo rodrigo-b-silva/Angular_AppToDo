@@ -26,15 +26,13 @@
         </span>
     </p>
     <p>
-        <label for="projeto">Projeto: </label>
-        <select [(ngModel)]="tarefa.codigoProjeto" id="projeto" name="projeto" required>
-            <option *ngFor="let p of projetos" [value]="p.codigo" [selected]="p.codigo==tarefa.codigoProjeto">
-                {{p.projeto}}
-            </option>
-        </select>
+        <input #tp="ngModel" type="text" [(ngModel)]="tarefa.codigoProjeto" id="projeto" name="projeto" required >
+        <span [hidden]="tp.untouched || tp.valid" style="color: red">
+            Projeto é necessário
+        </span> 
     </p>
     <p>
         <button input="submit" [disabled]="!f.valid">Atualizar</button>
-        <button (click)="excluiTarefa()">Excluir</button>
+        <button (click)="excluirTarefa()">Excluir</button>
     </p>
 </form>

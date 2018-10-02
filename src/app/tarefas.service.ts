@@ -15,7 +15,7 @@ export class TarefasService {
 
     url: string = 'http://kutova.com/dev/tarefas/api.php';
 
-    constructor(public http: HttpClient) { }
+    constructor(public http: HttpClient) {  }
 
     //GET
     getTarefas() : Observable<Tarefa[]>{

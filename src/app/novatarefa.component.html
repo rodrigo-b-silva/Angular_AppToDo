@@ -1,11 +1,38 @@
-<form action="" method="">
-    <label>Projeto: </label>
-    <input type="text" name="projeto"><br />
-    <label>Tarefa: </label>
-    <input type="text" name="tarefa"><br />
-    <label>Data: </label>
-    <input type="text" name="data"><br />
-    <label>Prioridade: </label>
-    <input type="text" name="prioridade"><br />
-    <button type="submit">Cadastrar</button> 
+<h2>
+    Nova Tarefa
+</h2>
+<form #f="ngForm" (ngSubmit)="incluirTarefa()">
+    <p>
+        <label for="tarefa">Tarefa: </label>
+        <input #tf="ngModel" type="text" [(ngModel)]="tarefa.tarefa" id="tarefa" name="tarefa" required />
+        <span [hidden]="tf.untouched || tf.valid" Os style="color: red">
+            A tarefa é obrigatória.
+        </span>
+    </p>
+    <p>
+        <label for="prioridade">Prioridade: </label>
+        <select [(ngModel)]="tarefa.prioridade" id="prioridade" name="prioridade" required>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+    </p>
+    <p>
+        <label for="data">Data: </label>
+        <input #td="ngModel" type="date" [(ngModel)]="tarefa.data" id="data" name="data" required />
+        <span [hidden]="td.untouched || td.valid" style="color: red">
+            Data inválida.
+        </span>
+    </p>
+    <p>
+        <label for="projeto">Projeto: </label>
+        <input #tp="ngModel" type="text" [value]="p.codigo" [(ngModel)]="tarefa.codigoProjeto" id="projeto" name="projeto" required >
+        <span [hidden]="tp.untouched || tp.valid" style="color: red">
+            Projeto é necessário
+        </span>
+    </p>
+    <p>
+        <button input="submit" [disabled]="!f.valid">Cadastrar</button>
+        <button>Cancelar</button>
+    </p>
 </form>

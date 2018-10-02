@@ -1,12 +1,10 @@
 <h2>Lista de tarefas</h2>
-    <li *ngFor="let t of tarefas">
-            Tarefa:     
-            <a routerLink="/tarefas/{{t.codigo}}">
-                {{t.tarefa}}
-            </a>
-            Prioridade: {{t.prioridade}}
-            projeto: {{t.codigoProjeto}}
-    </li>
-    <p><a routerLink="/tarefas/nova">Criar nova tarefa</a></p>
-
-    <pre>{{ tarefas | json }}</pre>
+<li *ngFor="let t of tarefas">
+    Tarefa:
+    <a routerLink="/tarefas/{{t.codigo}}">
+        {{t.tarefa}}
+    </a>
+    Prioridade: {{t.prioridade}}
+    projeto: {{t.codigoProjeto}}
+</li>
+<p><a routerLink="/tarefas/nova">Criar nova tarefa</a></p>
